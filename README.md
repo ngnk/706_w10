@@ -3,7 +3,7 @@
 ---
 ## Project Overview
 
-This project uses Apache Airflow (running via Docker Compose) to implement an ETL pipeline for NYC taxi data.
+This project uses Apache Airflow to implement an ETL pipeline for NYC taxi data.
 
 The pipeline performs the following actions:
 1.  **Ingest:** Locates Parquet files for "Yellow" and "Green" taxi trips from January 2025.
@@ -21,40 +21,15 @@ The pipeline performs the following actions:
 
 ### Prerequisites
 
-* Docker - Download Daemon here. Ensure it is open and running while executing the workflow.
-* Datasets - Download here. I slashed the datasets to be smaller in size, so ideally use the ones provided within the repository.
+* Docker - Ensure it is open and running while executing the workflow.
+* Datasets - Download [Here](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page). I slashed the datasets to reduce size, so use the ones provided within the repository.
 
-### 1. Create the Environment File
+### 1. Setup
 
-Create a file named `.env` in the root of this project. This file is necessary for setting the correct file permissions for logs and providing the warehouse connection string to Airflow.
+1. Clone this repository to your desired directory.
+2. Ensure the docker daemon is running.
 
-Copy and paste the following into the `.env` file:
-
-'''bash
-# Sets the Airflow user to your local user for correct log/output permissions
-AIRFLOW_UID=$(id -u)
-
-# Connection string for the Data Warehouse (uses the same Postgres service)
-AIRFLOW_CONN_WAREHOUSE_POSTGRES=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
-'''
-
-### 2. Place the Data Files
-
-The pipeline expects the raw Parquet files to be in a specific location.
-
-1.  Create the data directory:
-    '''bash
-    mkdir -p dags/data
-    '''
-2.  Place your Parquet files into this new directory. The DAG is hard-coded to look for these specific filenames:
-    * `dags/data/green_tripdata_2025-01.parquet`
-    * `dags/data/yellow_tripdata_2025-01.parquet`
-
----
-
-## ▶️ Operation and Run Instructions
-
-1.  **Build and Start the Services**
+3.  **Build and Start the Services**
 
     From the project's root directory, run the following command to build the custom Airflow image and start all services (Postgres, Airflow Webserver, Scheduler) in detached mode:
 
@@ -63,17 +38,17 @@ The pipeline expects the raw Parquet files to be in a specific location.
     '''
     Wait a minute or two for all services to initialize. The `airflow-init` service will handle setting up the database and creating a default user.
 
-2.  **Access the Airflow UI**
+4.  **Access the Airflow UI**
 
     Open your web browser and go to: **http://localhost:8080**
 
-3.  **Log In**
+5.  **Log In**
 
     The `airflow-init` service creates a default user for you.
     * **Username:** `admin`
     * **Password:** `admin`
 
-4.  **Run the Pipeline**
+6.  **Run the Pipeline**
 
     1.  On the Airflow homepage, you will see the DAG named `week10_taxi_pipeline`.
     2.  By default, the DAG is paused. Click the **toggle switch** on the left to unpause it (make it active).
