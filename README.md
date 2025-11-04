@@ -93,3 +93,20 @@ SELECT * FROM warehouse.zone_daily_agg ORDER BY trips DESC LIMIT 10;
 ```
 
 ---
+### Results
+
+## DAG Graph in Airflow
+![DAG](graph.png)
+
+
+## Successful Run in Airflow
+![Success](success_run.png)
+
+## Output Plot
+![output](output_plot.png)
+
+## Querying the DB
+![Table](query.png)
+
+---
+
