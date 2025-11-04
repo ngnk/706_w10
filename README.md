@@ -24,31 +24,33 @@ The pipeline performs the following actions:
 * Docker - Ensure it is open and running while executing the workflow.
 * Datasets - Download [Here](https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page). I slashed the datasets to reduce size, so use the ones provided within the repository.
 
-### 1. Setup
+### Setup
 
-1. Clone this repository to your desired directory.
-2. Ensure the docker daemon is running.
+1. **Clone this repository to your desired directory.**
+2. **Ensure the docker daemon is running.**
 
 3.  **Build and Start the Services**
 
     From the project's root directory, run the following command to build the custom Airflow image and start all services (Postgres, Airflow Webserver, Scheduler) in detached mode:
 
     '''bash
-    docker-compose up -d --build
+    docker compose up airflow-init
+    docker compose up -d
     '''
-    Wait a minute or two for all services to initialize. The `airflow-init` service will handle setting up the database and creating a default user.
+    
+    Wait a minute or two for all services to initialize. 
 
-4.  **Access the Airflow UI**
+5.  **Access the Airflow UI**
 
     Open your web browser and go to: **http://localhost:8080**
 
-5.  **Log In**
+6.  **Log In**
 
     The `airflow-init` service creates a default user for you.
     * **Username:** `admin`
     * **Password:** `admin`
 
-6.  **Run the Pipeline**
+7.  **Run the Pipeline**
 
     1.  On the Airflow homepage, you will see the DAG named `week10_taxi_pipeline`.
     2.  By default, the DAG is paused. Click the **toggle switch** on the left to unpause it (make it active).
