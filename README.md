@@ -33,10 +33,10 @@ The pipeline performs the following actions:
 
     From the project's root directory, run the following command to build the custom Airflow image and start all services (Postgres, Airflow Webserver, Scheduler) in detached mode:
 
-    '''bash
+    ```bash
     docker compose up airflow-init
     docker compose up -d
-    '''
+    ```
     
     Wait a minute or two for all services to initialize. 
 
