@@ -86,10 +86,10 @@ Use the following connection details:
 
 Once connected, you can query the tables in the `warehouse` schema:
 
-'''sql
+```sql
 SELECT * FROM warehouse.taxi_trips_clean LIMIT 10;
 
 SELECT * FROM warehouse.zone_daily_agg ORDER BY trips DESC LIMIT 10;
-'''
+```
 
 ---
