@@ -1,0 +1,30 @@
+{
+  "name": "Airflow Week10 Pipeline",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "airflow-webserver",
+  "workspaceFolder": "/opt/airflow",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [8080, 5440],
+  "remoteUser": "airflow",
+  "postCreateCommand": "pip install --upgrade pip",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.formatting.provider": "black",
+        "python.linting.enabled": true,
+        "python.linting.flake8Enabled": true,
+        "editor.formatOnSave": true
+      },
+      "extensions": [
+        "ms-python.python",
+        "ms-azuretools.vscode-docker",
+        "ms-toolsai.jupyter",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  }
+}

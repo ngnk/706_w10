@@ -1,0 +1,5 @@
+Linear Regression: tip_rate ~ trip_distance + trip_minutes
+R^2 (in-sample): 0.0262
+coef_distance: 0.0008
+coef_minutes:  -0.0026
+intercept:     0.2236
